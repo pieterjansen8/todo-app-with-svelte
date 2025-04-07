@@ -3,7 +3,7 @@
     import { Button, Input, Card, Heading, Badge } from 'flowbite-svelte';
     import { Plus, Trash } from '@lucide/svelte';
 	import { onMount } from 'svelte';
-
+    import { slide } from 'svelte/transition';
     let inputValue = $state("");
     let todos = $state<string[]>([]);
 
@@ -62,9 +62,9 @@
                     No todos yet. Add one above!
                 </div>
             {:else}
-                <ul class="space-y-3">
+                <ul transition:slide  class="space-y-3">
                     {#each todos as todo, index}
-                        <li class="flex items-center justify-between p-3 rounded-lg border shadow-sm hover:shadow-md transition-shadow">
+                        <li transition:slide class="flex items-center justify-between p-3 rounded-lg border shadow-sm hover:shadow-md transition-shadow">
                             <span class="text-gray-800 dark:text-white">{todo}</span>
                             <Button 
                                 on:click={() => removeTodo(index)} 
